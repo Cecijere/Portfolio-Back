@@ -4,8 +4,8 @@
  */
 package com.proyecto.portfolio.Service;
 
-import com.proyecto.portfolio.Entity.hardSoft;
-import com.proyecto.portfolio.Repository.RHardSoft;
+import com.proyecto.portfolio.Entity.hys;
+import com.proyecto.portfolio.Repository.Rhys;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -14,35 +14,35 @@ import org.springframework.stereotype.Service;
 
 @Transactional
 @Service
-public class SHardSoft {
+public class Shys {
     @Autowired
-    RHardSoft rHardSoft;
+    Rhys rhys;
     
-    public List<hardSoft> list(){
-        return rHardSoft.findAll();
+    public List<hys> list(){
+        return rhys.findAll();
     }
     
-    public Optional<hardSoft>getOne (int id){
-        return rHardSoft.findById(id);
+    public Optional<hys>getOne (int id){
+        return rhys.findById(id);
     }
     
-    public Optional<hardSoft> getByNombre (String nombre){
-        return rHardSoft.findByNombre(nombre);
+    public Optional<hys> getByNombre (String nombre){
+        return rhys.findByNombre(nombre);
     }
     
-    public void save(hardSoft skill){
-        rHardSoft.save(skill);
+    public void save(hys skill){
+        rhys.save(skill);
     }
     
     public void delete(int id){
-        rHardSoft.deleteById(id);
+        rhys.deleteById(id);
     }
     
     public boolean existsById(int id){
-        return rHardSoft.existsById(id);
+        return rhys.existsById(id);
     }
     
     public boolean existsByNombre(String nombre){
-        return rHardSoft.existsByNombre(nombre);
+        return rhys.existsByNombre(nombre);
     }
 }

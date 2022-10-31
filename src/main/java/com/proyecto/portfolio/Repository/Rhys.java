@@ -4,7 +4,7 @@
  */
 package com.proyecto.portfolio.Repository;
 
-import com.proyecto.portfolio.Entity.hardSoft;
+import com.proyecto.portfolio.Entity.hys;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,7 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author CECI
  */
-public interface RHardSoft extends JpaRepository<hardSoft, Integer>{
-    Optional<hardSoft> findByNombre (String nombre);
+public interface Rhys extends JpaRepository<hys, Integer>{
+    Optional<hys> findByNombre (String nombre);
     public boolean existsByNombre(String nombre);    
 }
+

@@ -4,10 +4,10 @@
  */
 package com.proyecto.portfolio.Controller;
 
-import com.proyecto.portfolio.Dto.dtoHardSoft;
-import com.proyecto.portfolio.Entity.hardSoft;
+import com.proyecto.portfolio.Dto.dtoHys;
+import com.proyecto.portfolio.Entity.hys;
 import com.proyecto.portfolio.Security.Controller.Mensaje;
-import com.proyecto.portfolio.Service.SHardSoft;
+import com.proyecto.portfolio.Service.Shys;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,43 +24,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://frontproyect.web.app")
-@RequestMapping("/hardysoft")
-public class CSoftHard {
+@CrossOrigin(origins = {"https://frontproyect.web.app", "http://localhost:4200"})
+@RequestMapping("/habilidades")
+public class CHys {
 
     @Autowired
-    SHardSoft sHardSoft;
+    Shys shys;
 
     @GetMapping("/lista")
-    public ResponseEntity<List<hardSoft>> list() {
-        List<hardSoft> list = sHardSoft.list();
+    public ResponseEntity<List<hys>> list() {
+        List<hys> list = shys.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoHardSoft dtoHardSoft) {
+    public ResponseEntity<?> create(@RequestBody dtoHys dtoHardSoft) {
         if (StringUtils.isBlank(dtoHardSoft.getNombre())) {
             return new ResponseEntity(new Mensaje("Nombre Obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
-        if (sHardSoft.existsByNombre(dtoHardSoft.getNombre())) {
+        if (shys.existsByNombre(dtoHardSoft.getNombre())) {
             return new ResponseEntity(new Mensaje("ERROR, ya existe"), HttpStatus.BAD_REQUEST);
         }
 
-        hardSoft hardSoft = new hardSoft(dtoHardSoft.getNombre(), dtoHardSoft.getPorcentaje());
-        sHardSoft.save(hardSoft);
+        hys hys = new hys(dtoHardSoft.getNombre(), dtoHardSoft.getPorcentaje());
+        shys.save(hys);
 
         return new ResponseEntity(new Mensaje("Añadido correctamente"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoHardSoft dtoHardSoft) {
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoHys dtoHardSoft) {
 
-        if (!sHardSoft.existsById(id)) {
+        if (!shys.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
 
-        if (sHardSoft.existsByNombre(dtoHardSoft.getNombre()) && sHardSoft.getByNombre(dtoHardSoft.getNombre()).get().getId() != id) {
+        if (shys.existsByNombre(dtoHardSoft.getNombre()) && shys.getByNombre(dtoHardSoft.getNombre()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("ERROR; Ya existe"), HttpStatus.BAD_REQUEST);
         }
 
@@ -68,30 +68,31 @@ public class CSoftHard {
             return new ResponseEntity(new Mensaje("Nombre obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
-        hardSoft hardSoft = sHardSoft.getOne(id).get();
-        hardSoft.setNombre(dtoHardSoft.getNombre());
-        hardSoft.setPorcentaje((dtoHardSoft.getPorcentaje()));
+        hys hYs = shys.getOne(id).get();
+        hYs.setNombre(dtoHardSoft.getNombre());
+        hYs.setPorcentaje((dtoHardSoft.getPorcentaje()));
 
-        sHardSoft.save(hardSoft);
+        shys.save(hYs);
         return new ResponseEntity(new Mensaje("Actualizado correctamente"), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!sHardSoft.existsById(id)) {
+        if (!shys.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe ID"), HttpStatus.NOT_FOUND);
         }
-        sHardSoft.delete(id);
+        shys.delete(id);
         return new ResponseEntity(new Mensaje("Eliminado con éxito"), HttpStatus.OK);
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<hardSoft> getById(@PathVariable("id") int id) {
-        if (!sHardSoft.existsById(id)) {
+    public ResponseEntity<hys> getById(@PathVariable("id") int id) {
+        if (!shys.existsById(id)) {
             return new ResponseEntity(new Mensaje("ID no existe"), HttpStatus.NOT_FOUND);
         }
-        hardSoft hardSoft = sHardSoft.getOne(id).get();
-        return new ResponseEntity(hardSoft, HttpStatus.OK);
+        hys hYs = shys.getOne(id).get();
+        return new ResponseEntity(hYs, HttpStatus.OK);
     }
 }
+
 

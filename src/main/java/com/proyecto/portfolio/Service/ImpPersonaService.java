@@ -4,12 +4,15 @@ import com.proyecto.portfolio.Entity.Persona;
 import com.proyecto.portfolio.Interface.IPersonaService;
 import com.proyecto.portfolio.Repository.IPersonaRepository;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class ImpPersonaService implements IPersonaService{
-    @Autowired IPersonaRepository ipersonaRepository;
+    @Autowired 
+    IPersonaRepository ipersonaRepository;
 
     @Override
     public List<Persona> getPersona() {
@@ -28,9 +31,8 @@ public class ImpPersonaService implements IPersonaService{
     }
 
     @Override
-    public Persona findPersona(Long id) {
-        Persona persona = ipersonaRepository.findById(id).orElse (null);
+    public Persona findPersona(Integer id) {
+        Persona persona = ipersonaRepository.findById(id).orElse(null);
         return persona;
     }
-    
 }

@@ -1,4 +1,4 @@
-package com.proyecto.portfolio.Security.Entity;
+    package com.proyecto.portfolio.Security.Entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 @Entity
 public class Usuario {
     @Id

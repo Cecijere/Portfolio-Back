@@ -2,22 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.proyecto.portfolio.Dto;
+package com.proyecto.portfolio.Entity;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class dtoHardSoft {
-    @NotBlank
+@Entity
+public class hys {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
-    @NotBlank
     private int porcentaje;
 
-    public dtoHardSoft() {
+    public hys() {
     }
 
-    public dtoHardSoft(String nombre, int porcentaje) {
+    public hys(String nombre, int porcentaje) {
         this.nombre = nombre;
         this.porcentaje = porcentaje;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
